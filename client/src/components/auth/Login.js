@@ -1,30 +1,30 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { loginUser } from '../../actions/authActions';
-import Textgroup from '../common/textgroup';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
+import Textgroup from "../common/textgroup";
 
 class Login extends Component {
   constructor() {
     super();
     this.state = {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-  componentDidMount(){
-    if(this.props.auth.isAuthenticated){
-      this.props.history.push('/dashboard');
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/dashboard');
+      this.props.history.push("/dashboard");
     }
 
     if (nextProps.errors) {
@@ -60,11 +60,23 @@ class Login extends Component {
                 Sign in to your DevConnector account
               </p>
               <form onSubmit={this.onSubmit}>
-                
-              
-                <Textgroup type = "email" error={errors.email} placeholder="Email Address" name="email" value={this.state.email} onChange={this.onChange}/>
+                <Textgroup
+                  type="email"
+                  error={errors.email}
+                  placeholder="Email Address"
+                  name="email"
+                  value={this.state.email}
+                  onChange={this.onChange}
+                />
 
-                <Textgroup type = "password" error={errors.email} placeholder="Password" name="password" value={this.state.password} onChange={this.onChange}/>
+                <Textgroup
+                  type="password"
+                  error={errors.password}
+                  placeholder="Password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.onChange}
+                />
                 {/* <div className="form-group">
                 
                   <input
@@ -81,7 +93,6 @@ class Login extends Component {
                     <div className="invalid-feedback">{errors.password}</div>
                   )}
                 </div> */}
-
 
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
@@ -104,4 +115,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { loginUser })(Login);
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);
