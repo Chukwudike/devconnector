@@ -14,8 +14,8 @@ const socialGroup = ({
   return (
 
     <div className="input-group mb-3">
-    <div className="imput-group-prepend">
-    <span className="imput-group-text">
+    <div className="input-group-prepend">
+    <span className="input-group-text">
     <i className = {icon}> </i>
     </span>
     </div>

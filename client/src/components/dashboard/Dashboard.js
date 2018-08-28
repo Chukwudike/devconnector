@@ -4,10 +4,17 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileAction";
 import Spinner from "../common/loader";
+import ProfileActions from "./profileActions";
+import {deleteProfile} from "../../actions/profileAction";
+import Experience from './Experience';
+import Education from './Education';
 
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
+  }
+  Delete(){
+    this.props.deleteProfile();
   }
 
   render() {
@@ -21,14 +28,34 @@ class Dashboard extends Component {
     } else {
       //check if logged in user has profile
       if (Object.keys(profile).length > 0) {
-        dashboardContent = <h4> TODO : Display Profile</h4>;
+        dashboardContent = (
+          <div>
+            <p className="lead text-muted">
+              {" "}
+              Hello{" "}
+              <Link to={`/api/profile/${profile.handle}`}>{user.name}</Link>
+            </p>
+            <ProfileActions />
+            <Experience experience = {profile.experience}/>
+            <Education education = {profile.education} />
+
+            <div style={{ marginBottom: "60px" }}>
+              <button
+                className="btn btn-danger"
+                onClick={this.Delete.bind(this)}
+              >
+                Delete Profile
+              </button>
+            </div>
+          </div>
+        );
       } else {
         dashboardContent = (
           <div>
             <p className="lead text-muted"> Hello {user.name} </p>
             <p>You have not set up a profile, Please add some info</p>
             <Link to="/create-profile" className="btn btn-lg btn-info">
-            Create profile!
+              Create profile!
             </Link>
           </div>
         );
@@ -63,5 +90,5 @@ Dashboard.propTypes = {
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile }
+  { getCurrentProfile, deleteProfile }
 )(Dashboard);

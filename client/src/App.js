@@ -18,7 +18,10 @@ import Login from "./components/auth/Login";
 import "./App.css";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/create-profile/Createprofile";
+import EditProfile from "./components/create-profile/editProfile";
 import { clearCurrentProfile } from "./actions/profileAction";
+import  AddExperience  from "./components/add-credentials/addExperience";
+import  AddEducation  from "./components/add-credentials/addEducation";
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -57,6 +60,15 @@ class App extends Component {
               </Switch>
               <Switch>
               <PrivateRoute  path="/create-profile" component={CreateProfile} />
+              </Switch>
+              <Switch>
+              <PrivateRoute  path="/edit-profile" component={EditProfile} />
+              </Switch>
+              <Switch>
+              <PrivateRoute  path="/add-experience" component={AddExperience} />
+              </Switch>
+              <Switch>
+              <PrivateRoute  path="/add-education" component={AddEducation} />
               </Switch>
             </div>
             <Footer />
