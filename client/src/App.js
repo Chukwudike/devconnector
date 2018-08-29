@@ -14,6 +14,9 @@ import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import Profiles from "./components/profiles/Profile";
+import Profile from "./components/Profile/Profile";
+import Notfound from "./components/notfound";
 
 import "./App.css";
 import Dashboard from "./components/dashboard/Dashboard";
@@ -55,6 +58,8 @@ class App extends Component {
             <div className="container">
               <Route exact path="/register" component={Register} />
               <Route  path="/login" component={Login} />
+              <Route  path="/profiles" component={Profiles} />
+              <Route  path="/profile/:handle" component={Profile} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
@@ -70,6 +75,7 @@ class App extends Component {
               <Switch>
               <PrivateRoute  path="/add-education" component={AddEducation} />
               </Switch>
+              <Route  path="/not-found" component={Notfound} />
             </div>
             <Footer />
           </div>
