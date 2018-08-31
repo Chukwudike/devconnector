@@ -35,7 +35,7 @@ export default (state = initialState, action) => {
         profile: null,
         loading: false
       };
-    default:
+    default:        
       return state;
   }
 };
