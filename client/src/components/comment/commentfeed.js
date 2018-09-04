@@ -4,11 +4,10 @@ import CommentItem from './commentItem';
 
 class CommentFeed extends Component {
   render() {
-    const { comments, postId } = this.props;
-
-    return comments.map(comment => (
-      <CommentItem key={comment._id} comment={comment} postId={postId} />
-    ));
+    const { comments, postId } = this.props
+    return comments.map(comment => 
+      <CommentItem key={comment._id} Comment={comment} postId={postId} />
+    );
   }
 }
 

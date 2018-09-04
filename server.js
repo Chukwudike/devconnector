@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const path =  require('path');
+//const multer = require('multer'); 
 
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
@@ -13,6 +14,11 @@ const app = express();
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// Using Static
+
+
+app.use('/uploads', express.static('uploads'));
 
 // DB Config
 const db = require('.//config/keys').Mongourl

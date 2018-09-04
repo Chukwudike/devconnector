@@ -9,8 +9,7 @@ class CommentItem extends Component {
   }
 
   render() {
-    const { comment, postId, auth } = this.props;
-
+    const { Comment, postId, auth } = this.props;
     return (
       <div className="card card-body mb-3">
         <div className="row">
@@ -18,18 +17,18 @@ class CommentItem extends Component {
             <a href="profile.html">
               <img
                 className="rounded-circle d-none d-md-block"
-                src={comment.avatar}
-                alt=""
+                src={Comment.avatar}
+                alt="user-display"
               />
             </a>
             <br />
-            <p className="text-center">{comment.name}</p>
+            <p className="text-center">{Comment.name}</p>
           </div>
           <div className="col-md-10">
-            <p className="lead">{comment.text}</p>
-            {comment.user === auth.user.id ? (
+            <p className="lead">{Comment.text}</p>
+            {Comment.user === auth.user.id ? (
               <button
-                onClick={this.onDeleteClick.bind(this, postId, comment._id)}
+                onClick={this.onDeleteClick.bind(this, postId, Comment._id)}
                 type="button"
                 className="btn btn-danger mr-1"
               >
@@ -45,7 +44,7 @@ class CommentItem extends Component {
 
 CommentItem.propTypes = {
   deleteComment: PropTypes.func.isRequired,
-  comment: PropTypes.object.isRequired,
+  Comment: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired
 };

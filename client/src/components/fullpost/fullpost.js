@@ -5,13 +5,14 @@ import { Link } from "react-router-dom";
 import { getPost } from "../../actions/postActions";
 import Spinner from "../common/loader";
 import PostItem from "../post/postItem";
-import Commentform from "../comment/comment"
-import Commentfeed from "../comment/comment"
-
+import Commentfeed from "../comment/commentfeed";
+import Commentform from "../comment/comment";
 
 class Fullpost extends Component {
   componentDidMount() {
-    this.props.getPost(this.props.match.params.id);
+    if (this.props.match.params.id) {
+      this.props.getPost(this.props.match.params.id);
+    }
   }
 
   render() {
@@ -21,19 +22,24 @@ class Fullpost extends Component {
     if (post === null || loading || Object.keys(post).length === 0) {
       postContent = <Spinner />;
     } else {
-      postContent = <div>{<PostItem post={post} showAction={false} />}</div>;
+      postContent = (
+        <div>
+           <PostItem post={post} showAction={false} />
+          <Commentform postId={post._id} />
+          <Commentfeed postId = {post._id} comments={post.comments} />
+        </div>
+      );
+      
     }
     return (
       <div className="post">
         <div className="container">
-          <div className="row"> 
+          <div className="row">
             <div className="col-md-12">
               <Link to="/feed" className="btn btn-light mb-3">
                 Back To Feed
               </Link>
-              {postContent}
-              <Commentform postId= {post._id}/>
-              <Commentfeed postId = {post._id} comments ={post.comments} />
+            {postContent}
             </div>
           </div>
         </div>

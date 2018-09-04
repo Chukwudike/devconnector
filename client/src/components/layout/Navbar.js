@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import { clearCurrentProfile } from "../../actions/profileAction";
 
+
 class Navbar extends Component {
   onLogoutClick(e) {
     e.preventDefault();
@@ -52,10 +53,10 @@ class Navbar extends Component {
           >
             <img
               className="rounded-circle"
-              src={user.avatar}
+              src= {`${user.avatar}`}
               style={{ width: "25px", marginRight: "5px" }}
               alt={user.name}
-              title="You must have a gravatar connected to your email to display an image"
+              title="Upload image if you dont have your a gravatar email connected"
             />
             Logout
           </a>

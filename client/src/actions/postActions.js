@@ -100,7 +100,7 @@ export const unLikePost = id => dispatch => {
 export const getPost = id => dispatch => {
   setProfileLoading();
   axios
-    .get(`/api/posts/${id}`)
+    .get(`/api/posts/${id}`) 
     .then(res =>
       dispatch({
         type: GET_POST,

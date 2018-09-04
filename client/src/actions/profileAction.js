@@ -6,7 +6,8 @@ import {
   CLEAR_CURRENT_PROFILE,
   GET_ERRORS,
   SET_CURRENT_USER,
-  GET_PROFILES
+  GET_PROFILES,
+  CLEAR_ERRORS
 } from "./types";
 
 export const getCurrentProfile = () => dispatch => {
@@ -26,6 +27,32 @@ export const getCurrentProfile = () => dispatch => {
       });
     });
 };
+
+//upload image
+export const clearErrors = () => {
+  return {
+    type: CLEAR_ERRORS
+  };
+};
+export const updateImage = (formdata) => dispatch => {
+  dispatch(clearErrors());
+  axios
+    .post("/api/profile/upload",formdata)
+    .then(res => {
+      dispatch({
+        type: SET_CURRENT_USER,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      });
+    });
+};
+
+
 
 //profile loading
 export const setProfileLoading = () => {
@@ -74,6 +101,7 @@ export const deleteProfile = () => dispatch => {
 //add experience 
 
 export const addExperience = (newExp, history) => dispatch => {
+  
   axios
     .post("api/profile/experience", newExp)
     .then(res => history.push("/dashboard"))

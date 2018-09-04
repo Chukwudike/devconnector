@@ -21,7 +21,6 @@ class Commentform extends Component {
       name: this.props.auth.user.name,
       avatar: this.props.auth.user.avatar
     };
-    console.log(newComment);
     this.props.addComment(this.props.postId,newComment);
   }
   onChange(e) {

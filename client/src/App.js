@@ -27,6 +27,7 @@ import  AddExperience  from "./components/add-credentials/addExperience";
 import  AddEducation  from "./components/add-credentials/addEducation";
 import Feed from "./components/post/post";
 import Fullpost from "./components/fullpost/fullpost";
+import Upload from "./components/dashboard/Images"
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -79,6 +80,9 @@ class App extends Component {
               </Switch>
               <Switch>
               <PrivateRoute  path="/add-education" component={AddEducation} />
+              </Switch>
+              <Switch>
+              <PrivateRoute  path= "/upload-image" component={Upload} />
               </Switch>
               <Switch>
               <PrivateRoute  path="/post/:id" component={Fullpost} />
