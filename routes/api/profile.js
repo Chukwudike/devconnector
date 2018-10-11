@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const passport = require("passport");
 const path = require("path");
-//const folder =  require("../../client/public/uploads");
+
 
 // Load Validation
 const validateProfileInput = require("../../validation/profile");
